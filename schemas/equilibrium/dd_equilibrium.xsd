@@ -2079,7 +2079,7 @@
 			</xs:element>
 			<xs:element name="triangularity_upper">
 				<xs:annotation>
-					<xs:documentation>Upper triangularity w.r.t. magnetic axis</xs:documentation>
+					<xs:documentation>Upper triangularity</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
@@ -2093,7 +2093,7 @@
 			</xs:element>
 			<xs:element name="triangularity_lower">
 				<xs:annotation>
-					<xs:documentation>Lower triangularity w.r.t. magnetic axis</xs:documentation>
+					<xs:documentation>Lower triangularity</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
