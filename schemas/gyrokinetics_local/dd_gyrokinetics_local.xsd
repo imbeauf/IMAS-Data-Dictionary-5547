@@ -685,7 +685,7 @@
 		<xs:sequence>
 			<xs:element name="density">
 				<xs:annotation>
-					<xs:documentation>normalized density</xs:documentation>
+					<xs:documentation>Normalized density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>1</units>
