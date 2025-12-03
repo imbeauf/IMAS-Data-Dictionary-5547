@@ -770,7 +770,7 @@
 			</xs:element>
 			<xs:element name="heat_flux_parallel">
 				<xs:annotation>
-					<xs:documentation>Normalized parallel heat flux (integral of 0.5 * m * v_par * v^2)</xs:documentation>
+					<xs:documentation>Normalized parallel heat flux (integral of 0.5 * m * v_par * v^2 * f *dv)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>1</units>
@@ -787,7 +787,7 @@
 			</xs:element>
 			<xs:element name="v_parallel_energy_perpendicular">
 				<xs:annotation>
-					<xs:documentation>Normalized moment (integral over 0.5 * m * v_par * v_perp^2)</xs:documentation>
+					<xs:documentation>Normalized moment (integral of 0.5 * m * v_par * v_perp^2 * f * dv)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>1</units>
@@ -804,7 +804,7 @@
 			</xs:element>
 			<xs:element name="v_perpendicular_square_energy">
 				<xs:annotation>
-					<xs:documentation>Normalized moment (integral over 0.5 * m * v_perp^2 * v^2)</xs:documentation>
+					<xs:documentation>Normalized moment (integral of 0.5 * m * v_perp^2 * v^2 * f * dv)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>1</units>
