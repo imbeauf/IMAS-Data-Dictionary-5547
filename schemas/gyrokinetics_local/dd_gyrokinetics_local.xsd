@@ -702,7 +702,7 @@
 			</xs:element>
 			<xs:element name="j_parallel">
 				<xs:annotation>
-					<xs:documentation>normalized parallel current density</xs:documentation>
+					<xs:documentation>Normalized parallel current density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>1</units>
