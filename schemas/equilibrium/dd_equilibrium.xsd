@@ -1055,7 +1055,7 @@
 					<xs:documentation>Standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>as_parent</units>
+						<units>m</units>
 						<introduced_after_version>4.1.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
