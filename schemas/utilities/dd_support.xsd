@@ -3085,7 +3085,8 @@
 			</xs:element>
 			<xs:element name="rho_pol_norm">
 				<xs:annotation>
-					<xs:documentation>Normalised poloidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
+					<xs:documentation>Normalized poloidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
+
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
