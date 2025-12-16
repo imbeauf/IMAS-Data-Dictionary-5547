@@ -104,7 +104,7 @@
 			</xs:element>
 			<xs:element name="time" type="flt_1d_type">
 				<xs:annotation>
-					<xs:documentation>Timebase for the processed dynamic data of this channel (outside of the beam and calibration_offset structures)</xs:documentation>
+					<xs:documentation>Timebase for the dynamic data of this channel </xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
@@ -121,7 +121,7 @@
 		<xs:sequence>
 			<xs:element name="points" type="line_of_sight_2points">
 				<xs:annotation>
-					<xs:documentation>Line of sight defined by two points. By convention, the first point is the closest to the diagnostic.</xs:documentation>
+					<xs:documentation>Line of sight defined by two points. This definition doesn't account for the beam deviation by the plasma optical properties. By convention, the first point is the closest to the diagnostic.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="channel" type="ece_imaging_channel" maxOccurs="30">
