@@ -464,7 +464,7 @@
 					<xs:documentation>Carbon (C)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="nitrogen" type="summary_constant_flt_0d">
+			<xs:element name="nitrogen" type="summary_constant_flt_0d_2">
 				<xs:annotation>
 					<xs:documentation>Nitrogen (N)</xs:documentation>
 				</xs:annotation>
@@ -4253,7 +4253,7 @@
 			<xs:appinfo>
 				<lifecycle_status>active</lifecycle_status>
 				<lifecycle_version>3.22.0</lifecycle_version>
-				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+				<lifecycle_last_change>4.2.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
