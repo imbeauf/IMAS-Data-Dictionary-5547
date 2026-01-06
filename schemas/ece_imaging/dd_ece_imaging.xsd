@@ -164,7 +164,7 @@
 				</xs:element>
 				<xs:element name="latency">
 					<xs:annotation>
-						<xs:documentation>Upper bound of the delay between physical information rece_imagingived by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and the data available on the real-time network.</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
 							<units>s</units>
