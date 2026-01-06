@@ -6,7 +6,7 @@
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
 	<xs:complexType name="int_1d_time_1">
 		<xs:annotation>
-			<xs:documentation>Similar to a signal (INT_1D) but with time base one level above, includes a type change information because of a historical correction specific to the ECE IDS</xs:documentation>
+			<xs:documentation>Similar to a signal (INT_1D) but with timebase one level above, includes a type change information because of a historical correction specific to the ECE IDS</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="data">
