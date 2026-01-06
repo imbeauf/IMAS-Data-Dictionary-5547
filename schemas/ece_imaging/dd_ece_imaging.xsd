@@ -104,7 +104,7 @@
 			</xs:element>
 			<xs:element name="time" type="flt_1d_type">
 				<xs:annotation>
-					<xs:documentation>Timebase for the dynamic data of this channel </xs:documentation>
+					<xs:documentation>Timebase for the dynamic data of this channel</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
