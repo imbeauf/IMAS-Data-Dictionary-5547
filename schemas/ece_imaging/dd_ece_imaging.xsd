@@ -96,7 +96,7 @@
 			</xs:element>
 			<xs:element name="optical_depth" type="physical_quantity_flt_1d_time_1">
 				<xs:annotation>
-					<xs:documentation>Optical depth of the plasma at the position of the measurement. This parameter is a proxy for the local / non-local character of the ece emission. It must be greater than 1 to guarantee that the measurement is dominated by local ece emission (non-local otherwise)</xs:documentation>
+					<xs:documentation>Optical depth of the plasma at the position of the measurement. This parameter is a proxy for the local / non-local character of the ECE emission. It must be greater than 1 to guarantee that the measurement is dominated by local ECE emission (non-local otherwise).</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
 					</xs:appinfo>
