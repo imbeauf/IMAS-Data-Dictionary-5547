@@ -18,13 +18,20 @@
 			</thead>
 			<p><a href="html_documentation.html">Back to top IDS list</a></p>
 			<tr>
-				<td>develop</td>
+				<td><b>develop</b></td>
 				<td>
           <ul>Additions
 				    <li>Extension of the DISTRIBUTIONS and DISTRIBUTIONS_SOURCES IDS with constants of motion</li>
             <li>Extension of the fitting structures in CORE_PROFILES, PLASMA_PROFILES, EDGE_PROFILES and EQUILIBRIUM</li>
+ 				    <li>Extension of the GYROKINETICS_LOCAL IDS with a non-linear moment</li>
+ 				    <li>Adding profiles_1d/triangularity in the EQUILIBRIUM IDS</li>
           </ul>
-        </td>
+					<ul>Changes
+						<li>Fix plasma_transport/model()/profiles_1d()/neutral()/state()/momentum, which had a GGD-like structure instead of a profiles_1d like structure</li>
+				    <li>Rename ionisation_potential to ionization_potential in the PLASMA_PROFILES IDS</li>
+				    <li>Fix some units in the SUMMARY IDS</li>
+				  </ul>
+       </td>
       </tr>
       <tr>
         <td><b>4.1.0</b></td>
