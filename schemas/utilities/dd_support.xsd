@@ -3083,6 +3083,20 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="rho_pol_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized poloidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../measured</coordinate1>
+						<introduced_after_version>4.1.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="weight">
 				<xs:annotation>
 					<xs:documentation>Weight given to each measured value</xs:documentation>
@@ -3090,6 +3104,20 @@
 						<type>dynamic</type>
 						<units>1</units>
 						<coordinate1>../measured</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sigma">
+				<xs:annotation>
+					<xs:documentation>Standard deviation of the measurement error</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>mixed</units>
+						<coordinate1>../measured</coordinate1>
+						<introduced_after_version>4.1.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -9478,6 +9506,20 @@
 						<type>dynamic</type>
 						<units>1</units>
 						<coordinate1>../measured</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sigma">
+				<xs:annotation>
+					<xs:documentation>Standard deviation of the measurement error</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>mixed</units>
+						<coordinate1>../measured</coordinate1>
+						<introduced_after_version>4.1.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
