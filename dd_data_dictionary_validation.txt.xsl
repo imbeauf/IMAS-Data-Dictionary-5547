@@ -342,7 +342,7 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
                     </xsl:if>
                 </xsl:when>
                 <!-- No validation for (itime), see IMAS-4675 -->
-                <xsl:when test="matches($index_with_parentheses, '^\(itime\)$')"/>
+                <xsl:when test="matches($index_with_parentheses, '^\(itime\)$')  or matches($index_with_parentheses, '^\(:\)$')"/>
                 <!-- GH#157, don't allow explicit index -->
                 <xsl:when test="matches($index_with_parentheses, '^\([1-9][0-9]*\)$')">
                     <xsl:apply-templates select=".">
