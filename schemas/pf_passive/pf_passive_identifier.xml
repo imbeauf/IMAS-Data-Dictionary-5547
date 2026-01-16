@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<constants name="pf_passive" identifier="yes" create_mapping_function="yes">
+<header>
+Object to which a pf_passive loop is related
+</header>
+
+<ddInstance xpath="pf_passive/loop/object"/>
+
+<int name="other"          description="Other object not in the list yet" >0</int>
+<int name="vv_inner"           description="Vacuum vessel inner shell" >10</int>
+<int name="vv_outer"       description="Vaccum vessel outer shell" >11</int>
+<int name="cryostat"          description="Cryostat" >12</int>
+<int name="triangular_support"  description="Triangular support" >13</int>
+
+</constants>

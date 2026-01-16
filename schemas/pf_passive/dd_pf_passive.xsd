@@ -30,6 +30,15 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="object" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Object to which this loop is related</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.1.1</introduced_after_version>
+						<doc_identifier>pf_passive/pf_passive_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="resistance">
 				<xs:annotation>
 					<xs:documentation>Passive loop resistance</xs:documentation>
@@ -93,7 +102,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.0.0</lifecycle_version>
-				<lifecycle_last_change>3.37.0</lifecycle_last_change>
+				<lifecycle_last_change>4.2.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
