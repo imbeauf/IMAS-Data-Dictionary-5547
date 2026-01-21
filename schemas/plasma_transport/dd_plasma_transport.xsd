@@ -815,7 +815,7 @@
 				<xs:annotation>
 					<xs:documentation>Transport coefficients related to the neutral momentum equations for various components (directions)</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.1.0</introduced_after_version>
+						<introduced_after_version>4.1.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
