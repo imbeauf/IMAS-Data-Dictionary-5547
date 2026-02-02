@@ -61,7 +61,12 @@
 			</xs:element>
 			<xs:element name="harmonic" type="int_1d_time_1">
 				<xs:annotation>
-					<xs:documentation>Harmonic detected by the channel. 1 corresponds to the "O1" mode, while 2 corresponds to the "X2" mode. </xs:documentation>
+					<xs:documentation>Harmonic detected by the channel (1 is the fundamental, 2 the second harmonic, ...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="int_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Mode detected by the channel. 1 corresponds to the "O" mode, while 2 corresponds to the "X" mode</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="if_bandwidth">
