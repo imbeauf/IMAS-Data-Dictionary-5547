@@ -3397,9 +3397,18 @@
 		<xs:sequence>
 			<xs:element name="power" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Power coupled to the plasma by fusion reactions</xs:documentation>
+					<xs:documentation>Power coupled to the thermal plasma by fusion reactions (slowing-down of fast confined fusion products)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_total" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Total instantaneous fusion power (from all reactions and carried by all fusion products, i.e. fast ions and neutrons)</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<introduced_after_version>4.1.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
