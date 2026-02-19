@@ -329,7 +329,7 @@
 			</xs:element>
 			<xs:element name="inductance">
 				<xs:annotation>
-					<xs:documentation>Coil inductance</xs:documentation>
+					<xs:documentation>Coil self-inductance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>H</units>
