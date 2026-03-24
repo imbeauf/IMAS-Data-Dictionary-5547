@@ -9,7 +9,7 @@
 <int name="prediction_free"  description="Equilibrium prediction, free boundary">3</int>
 <int name="mapping"  description="Used for mapping equilibrium results from one grid type / resolution to another, or for including variables not present in the first set such as the calculation of magnetic field of other derived parameters">4</int>
 <!-- Occurrence types for the plasma_core, plasma_source and plasma_transport IDSs -->
-<int name="core"       description="Core plasma data only">5</int>
-<int name="edge"       description="Edge plasma data only">6</int>
-<int name="core_edge"  description="Integrated core and edge plasma data">7</int>
+<int name="core"       description="Core plasma data only">11</int>
+<int name="edge"       description="Edge plasma data only">12</int>
+<int name="core_edge"  description="Integrated core and edge plasma data">13</int>
 </constants>
