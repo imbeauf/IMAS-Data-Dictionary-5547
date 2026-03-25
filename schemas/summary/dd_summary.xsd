@@ -582,6 +582,17 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.boron.value</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Lithium (Li)</xs:documentation>
