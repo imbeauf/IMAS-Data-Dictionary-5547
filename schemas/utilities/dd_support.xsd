@@ -689,7 +689,7 @@
 			</xs:element>
 			<xs:element name="validity_timed">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../time</coordinate1>
@@ -701,7 +701,7 @@
 			</xs:element>
 			<xs:element name="validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 					</xs:appinfo>
@@ -794,7 +794,7 @@
 			</xs:element>
 			<xs:element name="validity_timed">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../time</coordinate1>
@@ -807,7 +807,7 @@
 			</xs:element>
 			<xs:element name="validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 					</xs:appinfo>
@@ -840,7 +840,7 @@
 			</xs:element>
 			<xs:element name="validity_timed">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../time</coordinate1>
@@ -853,7 +853,7 @@
 			</xs:element>
 			<xs:element name="validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; -1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 					</xs:appinfo>
@@ -3581,7 +3581,7 @@
 			</xs:element>
 			<xs:element name="temperature_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -3613,7 +3613,7 @@
 			</xs:element>
 			<xs:element name="density_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -4109,7 +4109,7 @@
 			</xs:element>
 			<xs:element name="temperature_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -4141,7 +4141,7 @@
 			</xs:element>
 			<xs:element name="density_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -9983,7 +9983,7 @@
 			</xs:element>
 			<xs:element name="temperature_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -10015,7 +10015,7 @@
 			</xs:element>
 			<xs:element name="density_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -10511,7 +10511,7 @@
 			</xs:element>
 			<xs:element name="temperature_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the temperature profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -10543,7 +10543,7 @@
 			</xs:element>
 			<xs:element name="density_validity">
 				<xs:annotation>
-					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; - 1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
+					<xs:documentation>Indicator of the validity of the density profile. 0: valid from automated processing, 1: valid and certified by the RO; -1 means problem identified in the data processing (request verification by the RO), -2: invalid data, should not be used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
