@@ -133,7 +133,7 @@
 			</xs:element>
 			<xs:element name="position" type="rphiz0d_static" maxOccurs="10">
 				<xs:annotation>
-					<xs:documentation>List of (R,Z,phi) points defining the position of the corners of the flux loop. Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
+					<xs:documentation>List of (R,phi,Z) points defining the outline of the flux loop. Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
