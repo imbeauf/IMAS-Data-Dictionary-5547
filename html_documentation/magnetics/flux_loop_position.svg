@@ -24,17 +24,18 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="979"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
      id="namedview291"
      showgrid="false"
      inkscape:zoom="1.6023702"
-     inkscape:cx="396.88"
-     inkscape:cy="237.14869"
-     inkscape:window-x="1358"
+     inkscape:cx="-24.58727"
+     inkscape:cy="413.55381"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g10" /><metadata
+     inkscape:current-layer="g10"
+     inkscape:document-rotation="0" /><metadata
      id="metadata8"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
@@ -511,7 +512,8 @@
      y="0"
      x="0">=</tspan></text>
 </g></g><g
-       id="g292"><g
+       id="g292"
+       transform="translate(1.5)"><g
          clip-path="url(#clipPath298)"
          id="g294"><text
    id="text302"
@@ -522,28 +524,30 @@
      x="0"
      y="0">ψ</tspan></text>
 </g></g><g
-       id="g304"><g
+       id="g304"
+       transform="translate(-3)"><g
          clip-path="url(#clipPath310)"
          id="g306"><text
    id="text314"
    style="font-variant:normal;font-weight:normal;font-size:8.52px;font-family:CambriaMath;-inkscape-font-specification:CambriaMath;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
    transform="matrix(1,0,0,-1,480.46,695.62)"><tspan
-     id="tspan312"
-     y="0"
-     x="0">R</tspan></text>
+     sodipodi:role="line"
+     id="tspan292"
+     x="0"
+     y="0">2πR</tspan></text>
 </g></g><path
        id="path316"
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       d="m 479.98,704.62 h 6.84 v 0.84 h -6.84 z" /><g
-       id="g318"><g
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3495"
+       d="m 478.48,704.62 h 12.45668 v 0.84 H 478.48 Z" /><g
+       id="g318"
+       transform="translate(3)"><g
          clip-path="url(#clipPath324)"
          id="g320"><text
    id="text328"
    style="font-variant:normal;font-weight:normal;font-size:11.04px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
    transform="matrix(1,0,0,-1,486.94,701.62)"><tspan
      id="tspan326"
-     y="0"
-     x="0 2.76 5.2550402 13.1928 18.955681 24.4536 28.306561 33.71616">, where </tspan></text>
+     x="5.2550402 13.1928 18.955681 24.4536 28.306561 33.71616">where </tspan></text>
 </g></g><g
        id="g330"><g
          clip-path="url(#clipPath336)"
