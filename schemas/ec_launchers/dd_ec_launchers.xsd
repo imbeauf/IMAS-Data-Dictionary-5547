@@ -562,7 +562,7 @@
 				<xs:annotation>
 					<xs:documentation>Index of the waveguide (in the waveguide array of structure) originating the beam</xs:documentation>
 					<xs:appinfo>
-						<type>static</type>
+						<type>constant</type>
 						<introduced_after_version>4.2.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -574,7 +574,7 @@
 				<xs:annotation>
 					<xs:documentation>Index of the source (in the source array of structures) connected to the waveguide aperture originating this beam (i.e., waveguide_aperture(beam/waveguide_index))</xs:documentation>
 					<xs:appinfo>
-						<type>static</type>
+						<type>constant</type>
 						<introduced_after_version>4.2.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
