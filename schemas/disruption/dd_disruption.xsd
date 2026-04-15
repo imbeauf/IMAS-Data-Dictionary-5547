@@ -246,7 +246,7 @@
 						<coordinate1>../../time</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -260,7 +260,7 @@
 						<coordinate1>../../time</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
