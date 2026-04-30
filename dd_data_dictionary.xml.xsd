@@ -75,6 +75,7 @@
 	<xs:include schemaLocation="schemas/refractometer/dd_refractometer.xsd"/>
 	<xs:include schemaLocation="schemas/runaway_electrons/dd_runaway_electrons.xsd"/>
 	<xs:include schemaLocation="schemas/sawteeth/dd_sawteeth.xsd"/>
+	<xs:include schemaLocation="schemas/sniffer_probes/dd_sniffer_probes.xsd"/>
 	<xs:include schemaLocation="schemas/soft_x_rays/dd_soft_x_rays.xsd"/>
 	<xs:include schemaLocation="schemas/spectrometer_mass/dd_spectrometer_mass.xsd"/>
 	<xs:include schemaLocation="schemas/spectrometer_uv/dd_spectrometer_uv.xsd"/>
@@ -167,6 +168,7 @@
 				<xs:element ref="refractometer" maxOccurs="2"/>
 				<xs:element ref="runaway_electrons" maxOccurs="2"/>
 				<xs:element ref="sawteeth" maxOccurs="2"/>
+				<xs:element ref="sniffer_probes" maxOccurs="2"/>
 				<xs:element ref="soft_x_rays"/>
 				<xs:element ref="spectrometer_mass" maxOccurs="4"/>
 				<xs:element ref="spectrometer_uv" maxOccurs="2"/>
