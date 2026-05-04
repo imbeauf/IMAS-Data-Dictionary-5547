@@ -221,6 +221,7 @@
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_with_version>4.2.0</introduced_with_version>
+							<units>mixed</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
