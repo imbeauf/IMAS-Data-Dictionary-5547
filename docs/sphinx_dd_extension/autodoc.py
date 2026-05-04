@@ -142,7 +142,7 @@ def parse_lifecycle_status(field: ElementTree.Element) -> List[str]:
         logger.warning("Unknown lifecycle status %s", lifecycle_status)
 
     if introduced_with_version:
-        result.append(f".. versionadded:: >{introduced_with_version}")
+        result.append(f".. versionadded:: {introduced_with_version}")
 
     if lifecycle_last_change:
         result.append(f".. versionchanged:: {lifecycle_last_change}")
