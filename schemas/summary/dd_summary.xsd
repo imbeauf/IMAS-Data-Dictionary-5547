@@ -582,6 +582,17 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.boron.value</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Lithium (Li)</xs:documentation>
@@ -827,6 +838,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -845,6 +864,14 @@
 			<xs:element name="beryllium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
@@ -974,6 +1001,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_constant_flt_0d_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -992,6 +1027,14 @@
 			<xs:element name="beryllium" type="summary_constant_flt_0d_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Boron</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_constant_flt_0d_2">
@@ -1121,6 +1164,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -1139,6 +1190,14 @@
 			<xs:element name="beryllium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
