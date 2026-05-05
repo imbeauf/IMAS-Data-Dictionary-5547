@@ -1482,7 +1482,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -1520,7 +1520,7 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
@@ -1528,6 +1528,9 @@
 						<coordinate1_same_as>../../n_e/data</coordinate1_same_as>
 						<coordinate2>../../n_e/time</coordinate2>
 						<utilities_aoscontext>yes</utilities_aoscontext>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2130,7 +2133,7 @@
 			</xs:element>
 			<xs:element name="b0">
 				<xs:annotation>
-					<xs:documentation>Vacuum toroidal field at R0 [T]; Positive sign means anti-clockwise when viewing from above. The product R0B0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
+					<xs:documentation>Vacuum toroidal field at R0 [T]; Positive sign means counter-clockwise when viewed from above. The product R0B0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>T</units>
@@ -2168,7 +2171,7 @@
 			</xs:element>
 			<xs:element name="b0">
 				<xs:annotation>
-					<xs:documentation>Vacuum toroidal field at b0. Positive sign means anti-clockwise when viewing from above. The product r0*b0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
+					<xs:documentation>Vacuum toroidal field at b0. Positive sign means counter-clockwise when viewed from above. The product r0*b0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>T</units>
@@ -2187,11 +2190,14 @@
 		<xs:sequence>
 			<xs:element name="psi_magnetic_axis">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<coordinate1>../time</coordinate1>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi_normalization.psi_magnetic_axis</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2200,11 +2206,14 @@
 			</xs:element>
 			<xs:element name="psi_boundary">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<coordinate1>../time</coordinate1>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi_normalization.psi_boundary</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2344,7 +2353,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -2814,6 +2823,9 @@
 						<coordinate1>../rho_pol_norm</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2887,10 +2899,13 @@
 			</xs:element>
 			<xs:element name="psi_magnetic_axis">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary)</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary). For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi_magnetic_axis</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2899,10 +2914,13 @@
 			</xs:element>
 			<xs:element name="psi_boundary">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary)</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary). For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi_boundary</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2966,6 +2984,9 @@
 						<coordinate1>../rho_tor_norm</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -3013,10 +3034,13 @@
 			</xs:element>
 			<xs:element name="psi_magnetic_axis">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary)</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the magnetic axis (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary). For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi_magnetic_axis</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -3025,10 +3049,13 @@
 			</xs:element>
 			<xs:element name="psi_boundary">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary)</xs:documentation>
+					<xs:documentation>Value of the poloidal magnetic flux at the plasma boundary (useful to normalize the psi array values when the radial grid doesn't go from the magnetic axis to the plasma boundary). For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.grid.psi_boundary</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -4940,7 +4967,7 @@
 			</xs:element>
 			<xs:element name="n_phi">
 				<xs:annotation>
-					<xs:documentation>Array of toroidal mode numbers, where quantities vary as exp(i.n_phi.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
+					<xs:documentation>Array of toroidal mode numbers, where quantities vary as exp(i.n_phi.phi) and phi runs counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
@@ -9195,7 +9222,7 @@
 		<xs:sequence>
 			<xs:element name="ip">
 				<xs:annotation>
-					<xs:documentation>Total plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Total plasma current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>/time</coordinate1>
 						<units>A</units>
@@ -9211,7 +9238,7 @@
 			</xs:element>
 			<xs:element name="current_non_inductive">
 				<xs:annotation>
-					<xs:documentation>Total non-inductive current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Total non-inductive current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>/time</coordinate1>
 						<units>A</units>
@@ -9227,7 +9254,7 @@
 			</xs:element>
 			<xs:element name="current_bootstrap">
 				<xs:annotation>
-					<xs:documentation>Bootstrap current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Bootstrap current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>/time</coordinate1>
 						<units>A</units>
@@ -9243,7 +9270,7 @@
 			</xs:element>
 			<xs:element name="v_loop">
 				<xs:annotation>
-					<xs:documentation>LCFS loop voltage (positive value drives positive ohmic current that flows anti-clockwise when viewed from above)</xs:documentation>
+					<xs:documentation>LCFS loop voltage (positive value drives positive ohmic current that flows counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>/time</coordinate1>
 						<units>V</units>
@@ -9363,11 +9390,14 @@
 			</xs:element>
 			<xs:element name="resistive_psi_losses">
 				<xs:annotation>
-					<xs:documentation>Resistive part of the poloidal flux losses, defined as the volume-averaged scalar product of the electric field and the ohmic current density, normalized by the plasma current and integrated in time from the beginning of the plasma discharge: int ( (int(E_field_phi.j_ohm_phi) dV) / Ip ) dt)</xs:documentation>
+					<xs:documentation>Resistive part of the poloidal flux losses, defined as the volume-averaged scalar product of the electric field and the ohmic current density, normalized by the plasma current and integrated in time from the beginning of the plasma discharge: int ( (int(E_field_phi.j_ohm_phi) dV) / Ip ) dt). Positive when the plasma current flows counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.resistive_psi_losses</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -10948,7 +10978,7 @@
 			</xs:element>
 			<xs:element name="q">
 				<xs:annotation>
-					<xs:documentation>Safety factor</xs:documentation>
+					<xs:documentation>Safety factor. Positive when toroidal current and toroidal magnetic field are in the same direction</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
 						<type>dynamic</type>
@@ -12776,6 +12806,9 @@
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -12897,7 +12930,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -12943,7 +12976,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -12989,7 +13022,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -13025,10 +13058,13 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal magnetic flux</xs:documentation>
+					<xs:documentation>Poloidal magnetic flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<units>Wb</units>
 						<type>dynamic</type>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -13057,7 +13093,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>rad</units>
@@ -13103,7 +13139,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -13150,7 +13186,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -13197,7 +13233,7 @@
 			</xs:element>
 			<xs:element name="phi" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<units>rad</units>
 					</xs:appinfo>
@@ -13333,7 +13369,7 @@
 			</xs:element>
 			<xs:element name="phi" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<units>rad</units>
 					</xs:appinfo>
@@ -13349,9 +13385,12 @@
 			</xs:element>
 			<xs:element name="psi" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -13397,7 +13436,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle  (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle  (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -13431,7 +13470,7 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>W</units>
@@ -13440,6 +13479,9 @@
 						<change_nbc_version>3.26.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
 						<change_nbc_previous_name>psi/data</change_nbc_previous_name>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -13508,7 +13550,7 @@
 			</xs:element>
 			<xs:element name="phi" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<units>rad</units>
 					</xs:appinfo>
@@ -13547,7 +13589,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -13596,7 +13638,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -13622,11 +13664,14 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<coordinate1>../r</coordinate1>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -14251,7 +14296,7 @@
 			</xs:element>
 			<xs:element name="x1_unit_vector" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
@@ -14421,7 +14466,7 @@
 		<xs:sequence>
 			<xs:element name="x1_unit_vector" type="xyz0d_dynamic_aos3">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
@@ -14560,7 +14605,7 @@
 			</xs:element>
 			<xs:element name="x1_unit_vector" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
@@ -14700,7 +14745,7 @@
 			</xs:element>
 			<xs:element name="x1_unit_vector" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
@@ -14893,7 +14938,7 @@
 			</xs:element>
 			<xs:element name="x1_unit_vector" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="x2_unit_vector" type="xyz0d_static">
@@ -15122,7 +15167,7 @@
 			</xs:element>
 			<xs:element name="x1_unit_vector" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewed from above). </xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
@@ -16410,11 +16455,14 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<coordinate1>../../length</coordinate1>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
