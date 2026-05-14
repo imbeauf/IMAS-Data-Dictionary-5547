@@ -673,7 +673,7 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="waveguide" type="ec_launchers_mirror" maxOccurs="5">
+				<xs:element name="waveguide" type="ec_launchers_waveguide" maxOccurs="5">
 					<xs:annotation>
 						<xs:documentation>Set of waveguides feeding the launcher's optical system</xs:documentation>
 						<xs:appinfo>
