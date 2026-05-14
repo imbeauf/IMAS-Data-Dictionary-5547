@@ -709,6 +709,86 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ec_mirror_movement">
+		<xs:annotation>
+			<xs:documentation>EC mirror movements</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Core mirror steering”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Type of movement</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>ec_launchers/frame_DOF_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="translation" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Linear displacement from reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rotation_angle" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Angular displacement with respect to the reference position, counter-clockwise around the direction vector </xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ec_mirror">
+		<xs:annotation>
+			<xs:documentation>EC mirror</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Mirror in upper port 12”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="movement" type="pulse_schedule_ec_mirror_movement" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of degrees of freedom for this mirror, allowing the mirror to move around its reference position indicated in ../geometry. Can be cascaded for composite movements.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="pulse_schedule_ec_beam">
 		<xs:annotation>
 			<xs:documentation>EC beam</xs:documentation>
@@ -1069,6 +1149,15 @@
 						<change_nbc_version>3.26.0,3.40.0</change_nbc_version>
 						<change_nbc_description>aos_renamed</change_nbc_description>
 						<change_nbc_previous_name>antenna,launcher</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mirror" type="pulse_schedule_ec_mirror" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of Electron Cyclotron mirrors</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1836,7 +1925,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.6.0</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.2.0</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
