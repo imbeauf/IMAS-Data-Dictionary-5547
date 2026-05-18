@@ -578,9 +578,9 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="power_saturation">
+			<xs:element name="power_stabilization">
 				<xs:annotation>
-					<xs:documentation>Estimation of the EC power needed to stabilize this mode</xs:documentation>
+					<xs:documentation>Power required for stabilization of this tearing mode, computed from the modified Rutherford equation. This value represents the instantaneous power requirement to drive sufficient localized current at the rational surface to suppress island growth or maintain steady-state width. This quantity serves as the setpoint input for real-time EC power and mirror steering controllers in NTM stabilization feedback loops</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
@@ -591,6 +591,19 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="power_stabilization_margin">
+				<xs:annotation>
+					<xs:documentation>Multiplicative safety margin applied to the theoretically-calculated stabilization power requirement for this mode. Typical values range from 1.0 (no margin) to 1.5 (50% margin). Values > 1.0 request additional power beyond the physics-model minimum to ensure robust stabilization under uncertain conditions</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>			
 			<xs:element name="detailed_evolution" type="ntm_time_slice_mode_detailed_evolution">
 				<xs:annotation>
 					<xs:documentation>Detailed NTM evolution on a finer timebase than the time_slice array of structure</xs:documentation>
