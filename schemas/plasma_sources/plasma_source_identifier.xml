@@ -26,13 +26,13 @@ Translation table for sources of particles, momentum and heat.
 <int name="pellet"                  description="Sources from injection"                                                          >14</int>
 
 <int name="auxiliary"               description="Source from auxiliary systems, e.g. heating and current drive systems"           >100</int>
-<int name="IC_NBI" alias="ic_nbi"  description="A combination of the ic and nbi sources"                                         >101</int>
-<int name="IC_fusion" alias="ic_fusion"  description="A combination of the ic and fusion sources"                                      >102</int>
-<int name="IC_NBI_fusion"  alias="ic_nbi_fusion"  description="A combination of the ic and fusion sources"                                      >103</int>
-<int name="EC_LH" alias="ec_lh"     description="A combination of the ec and lh sources"                                          >104</int>
-<int name="EC_IC" alias="ec_ic"    description="A combination of the ec and ic sources"                                          >105</int>
-<int name="LH_IC" alias="lh_ic"   description="A combination of the lh and ic sources"                                          >106</int>
-<int name="EC_LH_IC" alias="ec_lh_ic"  description="A combination of the ec, lh and ic sources"                                      >107</int>
+<int name="IC_NBI" alias="ic_nbi"  description="A combination of the IC and NBI sources"                                         >101</int>
+<int name="IC_fusion" alias="ic_fusion"  description="A combination of the IC and fusion sources"                                      >102</int>
+<int name="IC_NBI_fusion"  alias="ic_nbi_fusion"  description="A combination of the IC, NBI and fusion sources"                        >103</int>
+<int name="EC_LH" alias="ec_lh"     description="A combination of the EC and LH sources"                                          >104</int>
+<int name="EC_IC" alias="ec_ic"    description="A combination of the EC and IC sources"                                          >105</int>
+<int name="LH_IC" alias="lh_ic"   description="A combination of the LH and IC sources"                                          >106</int>
+<int name="EC_LH_IC" alias="ec_lh_ic"  description="A combination of the EC, LH and IC sources"                                      >107</int>
 <int name="gas_puff"                description="Gas puff"                                                                        >108</int>
 <int name="killer_gas_puff"         description="Killer gas puff"                                                                 >109</int>
 
