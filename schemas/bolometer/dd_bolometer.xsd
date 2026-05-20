@@ -129,7 +129,7 @@
 			</xs:element>
 			<xs:element name="temperature" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Temperature of the detector foil</xs:documentation>
+					<xs:documentation>Temperature of detector foil</xs:documentation>
 					<xs:appinfo>
 						<units>K</units>
 						<introduced_with_version>4.2.0</introduced_with_version>
