@@ -4,6 +4,33 @@
 <?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="bolometer_channel_ggd">
+		<xs:annotation>
+			<xs:documentation>Equilibrium at a given time slice</xs:documentation>
+			<xs:appinfo>
+				<type>dynamic</type>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geometry_matrix" type="generic_grid_scalar">
+				<xs:annotation>
+					<xs:documentation>Geometry_matrix allowing to convert the power emitted by volume elements of the /ggd_grid unto power measured by this channel. Power = sum_over_GGD_volume_elements(emissivity)</xs:documentation>
+					<xs:appinfo>
+						<units>m^3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="bolometer_channel">
 		<xs:annotation>
 			<xs:documentation>Bolometer channel</xs:documentation>
@@ -124,6 +151,15 @@
 				<xs:complexType>
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
+			</xs:element>
+			<xs:element name="ggd" type="bolometer_channel_ggd" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Quantities based on GGD coordinates</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -264,7 +300,7 @@
 				</xs:element>
 				<xs:element name="grid_ggd" type="generic_grid_aos3_root" maxOccurs="unbounded">
 					<xs:annotation>
-						<xs:documentation>Wall geometry described using the Generic Grid Description, for various time slices (in case of mobile wall elements). The timebase of this array of structure must be a subset of the timebase on which physical quantities are described (../ggd structure). Grid_subsets are used to describe various  wall components in a modular way.</xs:documentation>
+						<xs:documentation>GGD grid. The timebase of this array of structure must be a subset of the timebase on which physical quantities are described (camera/channel/ggd)</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>time</coordinate1>
 							<type>dynamic</type>
