@@ -14,7 +14,7 @@
 		<xs:sequence>
 			<xs:element name="geometry_matrix" type="generic_grid_scalar">
 				<xs:annotation>
-					<xs:documentation>Geometry_matrix allowing to convert the power emitted by volume elements of the /ggd_grid unto power measured by this channel. Power = sum_over_GGD_volume_elements(emissivity)</xs:documentation>
+					<xs:documentation>Geometry matrix allowing to convert the power emitted by volume elements of the /ggd_grid into power measured by this channel. Power = sum_over ggd_volume_elements*geometry_matrix*emissivity</xs:documentation>
 					<xs:appinfo>
 						<units>m^3</units>
 					</xs:appinfo>
