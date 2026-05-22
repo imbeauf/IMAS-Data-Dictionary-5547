@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<constants name="spectrometer_x_reflector_geometry" identifier="yes" create_mapping_function="yes">
+<constants name="ntms_deltaw_contribution" identifier="yes" create_mapping_function="yes">
 <header>
 Type of deltaw contribution
 </header>
