@@ -573,6 +573,9 @@
 							<coordinate1>1...N</coordinate1>
 							<cocos_alias>bpol</cocos_alias>
 							<cocos_replace>b_field_pol</cocos_replace>
+							<change_nbc_version>3.24.0</change_nbc_version>
+							<change_nbc_description>aos_renamed</change_nbc_description>
+							<change_nbc_previous_name>bpol_probe</change_nbc_previous_name>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
