@@ -1694,6 +1694,15 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="t_e_n_e_weighted_average" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Density weighted average of the electron temperature over the target, i.e. integral(t_e * n_e*dA)/integral(n_e*dA) where the integrals are done over the target area</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="t_i_average" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
 					<xs:documentation>Ion temperature (average over ion species) at the strike point</xs:documentation>
