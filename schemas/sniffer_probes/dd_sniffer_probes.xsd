@@ -40,7 +40,7 @@
 	</xs:complexType>
 	<xs:element name="sniffer_probes">
 		<xs:annotation>
-			<xs:documentation>Sniffer probes</xs:documentation>
+			<xs:documentation>Sniffer probes, allowing to detect electromagnetic waves (from plasma heating actuators) travelling around the torus while not being absorbed by the plasma. For the moment, this IDS contains only the machine description.</xs:documentation>
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>4.2.0</lifecycle_version>
@@ -71,7 +71,6 @@
 					</xs:complexType>
 				</xs:element>
 				<xs:element ref="code"/>
-				<xs:element ref="time"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
