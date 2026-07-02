@@ -75,7 +75,7 @@
 	<xs:include schemaLocation="schemas/refractometer/dd_refractometer.xsd"/>
 	<xs:include schemaLocation="schemas/runaway_electrons/dd_runaway_electrons.xsd"/>
 	<xs:include schemaLocation="schemas/sawteeth/dd_sawteeth.xsd"/>
-	<xs:include schemaLocation="schemas/sniffer_probes/dd_sniffer_probes.xsd"/>
+	<xs:include schemaLocation="schemas/ec_sniffer_probes/dd_ec_sniffer_probes.xsd"/>
 	<xs:include schemaLocation="schemas/soft_x_rays/dd_soft_x_rays.xsd"/>
 	<xs:include schemaLocation="schemas/spectrometer_mass/dd_spectrometer_mass.xsd"/>
 	<xs:include schemaLocation="schemas/spectrometer_uv/dd_spectrometer_uv.xsd"/>
