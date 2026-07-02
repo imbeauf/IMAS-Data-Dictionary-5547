@@ -22,7 +22,7 @@
 			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Description, e.g. “probe located in port Q4”</xs:documentation>
+					<xs:documentation>Description, e.g. “Probe located in port Q4”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 					</xs:appinfo>
