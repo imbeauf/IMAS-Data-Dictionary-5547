@@ -27,7 +27,7 @@
 					<xs:documentation>Type of the contribution</xs:documentation>
 					<xs:appinfo>
 						<introduced_with_version>4.2.0</introduced_with_version>
-						<doc_identifier>ntms/ntms_deltaw_identifier</doc_identifier>
+						<doc_identifier>ntms/ntms_deltaw_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -276,7 +276,7 @@
 					<xs:documentation>Type of the contribution</xs:documentation>
 					<xs:appinfo>
 						<introduced_with_version>4.2.0</introduced_with_version>
-						<doc_identifier>ntms/ntms_deltaw_identifier</doc_identifier>
+						<doc_identifier>ntms/ntms_deltaw_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
