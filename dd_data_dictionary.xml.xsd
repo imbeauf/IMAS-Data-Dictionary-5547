@@ -168,7 +168,7 @@
 				<xs:element ref="refractometer" maxOccurs="2"/>
 				<xs:element ref="runaway_electrons" maxOccurs="2"/>
 				<xs:element ref="sawteeth" maxOccurs="2"/>
-				<xs:element ref="sniffer_probes" maxOccurs="2"/>
+				<xs:element ref="ec_sniffer_probes" maxOccurs="2"/>
 				<xs:element ref="soft_x_rays"/>
 				<xs:element ref="spectrometer_mass" maxOccurs="4"/>
 				<xs:element ref="spectrometer_uv" maxOccurs="2"/>
