@@ -2659,7 +2659,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="limiter" type="summary_local_position">
+			<xs:element name="limiter" type="summary_local_quantities_no_position_name">
 				<xs:annotation>
 					<xs:documentation>Parameters at the limiter tangency point</xs:documentation>
 				</xs:annotation>
