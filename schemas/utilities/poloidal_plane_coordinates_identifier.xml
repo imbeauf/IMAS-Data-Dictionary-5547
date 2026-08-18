@@ -97,7 +97,7 @@
      axis_labels="rho_tor,polar_angle">53</int>
 
 <int name="inverse_rhotor_straight_field_line_fourier"
-     description="Flux surface type with radial label sqrt[Phi/pi/B0] (dim1), Phi being toroidal flux, and Fourier modes in the straight-field line poloidal angle (dim2)" units="m,1" axis_labels="rho_tor,straight_field_line_fourier"
+     description="Flux surface type with radial label sqrt[Phi/pi/B0] (dim1), Phi being toroidal flux, and Fourier modes in the straight field-line poloidal angle (dim2)" units="m,1" axis_labels="rho_tor,straight_field_line_fourier"
      >54</int>
 <int name="inverse_rhotor_equal_arc_fourier"
      description="Flux surface type with radial label sqrt[Phi/pi/B0] (dim1), Phi being toroidal flux, and Fourier modes in the equal arc poloidal angle (dim2)" units="m,1" axis_labels="rho_tor,equal_arc_fourier"
