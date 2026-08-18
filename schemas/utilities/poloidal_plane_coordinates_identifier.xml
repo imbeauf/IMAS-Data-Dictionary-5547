@@ -31,7 +31,7 @@
      description="Flux surface type with psi as radial label (dim1) and Fourier modes in the polar poloidal angle (mod(index,10)=6) (dim2); could be non-equidistant" units="Wb,1" axis_labels="psi,equal_arc_fourier"
      >16</int>
 <int name="inverse_rhopolnorm_straight_field_line"
-     description="Flux surface type with radial label sqrt[(psi-psi_axis)/(psi_edge-psi_axis)] (dim1) and the straight-field line poloidal angle (dim2)" units="1,rad"
+     description="Flux surface type with radial label sqrt[(psi-psi_axis)/(psi_edge-psi_axis)] (dim1) and the straight field-line poloidal angle (dim2)" units="1,rad"
      axis_labels="rho_pol_norm,straight_field_line_angle" >21</int>
 <int name="inverse_rhopolnorm_equal_arc"
      description="Flux surface type with radial label sqrt[(psi-psi_axis)/(psi_edge-psi_axis)] (dim1) and the equal arc poloidal angle (dim2)" units="1,rad"
