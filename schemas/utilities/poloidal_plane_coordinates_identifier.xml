@@ -7,7 +7,7 @@
 <units_paths>../grid/dim1,../grid/dim2</units_paths>
 
 <int name="rectangular"
-     description="Cylindrical R,Z ala eqdsk (R=dim1, Z=dim2). In this case the position arrays should not be filled since they are redundant with grid/dim1 and dim2." units="m,m" axis_labels="R,Z"
+     description="R (major radius), Z (height) (R=dim1, Z=dim2). In this case the position arrays should not be filled since they are redundant with grid/dim1 and grid/dim2." units="m,m" axis_labels="R,Z"
      >1</int>
 <int name="inverse"
      description="Rhopolar_polar 2D polar coordinates (rho=dim1, theta=dim2) with magnetic axis as centre of grid; the polar angle is theta= -atan2(z-zaxis,r-raxis)."  units="m,rad" axis_labels="rho,polar_angle"
