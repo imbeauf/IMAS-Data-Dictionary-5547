@@ -22,7 +22,7 @@
      description="Flux surface type with psi as radial label (dim1) and the polar poloidal angle (mod(index,10)=3) (dim2); could be non-equidistant" units="Wb,rad" axis_labels="psi,polar_angle"
      >13</int>
 <int name="inverse_psi_straight_field_line_fourier"
-     description="Flux surface type with psi as radial label (dim1) and Fourier modes in the straight-field line poloidal angle (mod(index,10)=4) (dim2), could be non-equidistant; magnetic axis as centre of grid" units="Wb,1" axis_labels="psi,straight_field_line_fourier"
+     description="Flux surface type with psi as radial label (dim1) and Fourier modes in the straight field-line poloidal angle (mod(index,10)=4) (dim2), could be non-equidistant; magnetic axis as centre of grid" units="Wb,1" axis_labels="psi,straight_field_line_fourier"
      >14</int>
 <int name="inverse_psi_equal_arc_fourier"
      description="Flux surface type with psi as radial label (dim1) and Fourier modes in the equal arc poloidal angle (mod(index,10)=5) (dim2)" units="Wb,1"
