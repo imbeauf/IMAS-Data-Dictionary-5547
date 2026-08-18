@@ -77,7 +77,7 @@
      axis_labels="rho_pol,polar_angle">43</int>
 
 <int name="inverse_rhopol_straight_field_line_fourier"
-     description="Flux surface type with radial label sqrt[psi-psi_axis] (dim1) and Fourier modes in the straight-field line poloidal angle (dim2)" units="Wb^-0.5,1"  axis_labels="rho_pol,straight_field_line_fourier"
+     description="Flux surface type with radial label sqrt[psi-psi_axis] (dim1) and Fourier modes in the straight field-line poloidal angle (dim2)" units="Wb^-0.5,1"  axis_labels="rho_pol,straight_field_line_fourier"
      >44</int>
 <int name="inverse_rhopol_equal_arc_fourier"
      description="Flux surface type with radial label sqrt[psi-psi_axis] (dim1) and Fourier modes in the equal arc poloidal angle (dim2)" units="Wb^-0.5,1"
