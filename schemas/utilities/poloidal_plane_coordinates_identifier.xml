@@ -49,7 +49,7 @@
      description="Flux surface type with radial label sqrt[(psi-psi_axis)/(psi_edge-psi_axis)] (dim1) and Fourier modes in the polar poloidal angle (dim2)"
       units="1,1" axis_labels="rho_pol_norm,polar_fourier">26</int>
 <int name="inverse_rhotornorm_straight_field_line"
-     description="Flux surface type with radial label sqrt[Phi/Phi_edge] (dim1) and the straight-field line poloidal angle (dim2)"  units="1,rad"
+     description="Flux surface type with radial label sqrt[Phi/Phi_edge] (dim1) and the straight field-line poloidal angle (dim2)"  units="1,rad"
      axis_labels="rho_tor_norm,straight_field_line_angle">31</int>
 <int name="inverse_rhotornorm_equal_arc"
      description="Flux surface type with radial label sqrt[Phi/Phi_edge] (dim1) and the equal arc poloidal angle (dim2)" units="1,rad" axis_labels="rho_tor_norm,equal_arc_angle"
