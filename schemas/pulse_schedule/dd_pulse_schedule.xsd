@@ -942,11 +942,13 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="species" type="gas_mixture_constant" maxOccurs="3">
+			<xs:element name="species" type="plasma_composition_species">
 				<xs:annotation>
-					<xs:documentation>Species injected by the NBI unit (may be more than one in case the unit injects a gas mixture)</xs:documentation>
+					<xs:documentation>Injected species</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>1...N</coordinate1>
+						<change_nbc_version>4.2.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>gas_mixture_constant AoS</change_nbc_previous_type>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
