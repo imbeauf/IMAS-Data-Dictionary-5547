@@ -10,6 +10,5 @@
 <int name="h_l"        description="H to L mode transition">2</int>
 <int name="sawtooth"    description="Sawtooth crash">3</int>
 <int name="disruption" description="Disruption">4</int>
-<int name="heating"   description="Start of auxiliary heating">5</int>
 
 </constants>

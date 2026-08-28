@@ -4333,25 +4333,13 @@
 				<xs:annotation>
 					<xs:documentation>Type of this event</xs:documentation>
 					<xs:appinfo>
-							<doc_identifier>summary/event_type_identifier.xml</doc_identifier>
+						<doc_identifier>summary/event_type_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="time">
 				<xs:annotation>
 					<xs:documentation>Time at which this event started</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-						<units>s</units>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_0D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="duration">
-				<xs:annotation>
-					<xs:documentation>Duration of this event</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>s</units>
