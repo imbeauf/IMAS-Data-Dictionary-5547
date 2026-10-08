@@ -494,7 +494,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -671,7 +671,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -709,6 +709,126 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ec_mirror_movement">
+		<xs:annotation>
+			<xs:documentation>EC mirror movements</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Core mirror steering”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Type of movement</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>ec_launchers/degrees_of_freedom_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="translation" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Linear displacement from reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rotation_angle" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Angular displacement with respect to the reference position, counter-clockwise around the direction vector </xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ec_beam_polarization">
+		<xs:annotation>
+			<xs:documentation>EC beam polarization</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="o_mode_fraction" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Fraction of EC beam power launched in ordinary (O) mode. If all power is launched in ordinary mode (O-mode), o_mode_fraction = 1.0. If all  power is launched in extraordinary mode (X-mode), o_mode_fraction = 0.0</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="azimuthal_angle" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Poincare sphere angle psi for mixed mode</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ellipticity_angle" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Poincare sphere angle chi for mixed mode</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ec_mirror">
+		<xs:annotation>
+			<xs:documentation>EC mirror</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Mirror in upper port 12”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="movement" type="pulse_schedule_ec_mirror_movement" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of degrees of freedom for this mirror, allowing the mirror to move around its reference position indicated in ../geometry. Can be cascaded for composite movements.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deposition_rho_tor_norm" type="pulse_schedule_reference_ec">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate at which the main deposition should occur. For tracking a rational surface use a negative value (for example -1.5 or -2.0)"</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="pulse_schedule_ec_beam">
 		<xs:annotation>
 			<xs:documentation>EC beam</xs:documentation>
@@ -730,7 +850,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -756,14 +876,6 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="deposition_rho_tor_norm" type="pulse_schedule_reference_ec">
-				<xs:annotation>
-					<xs:documentation>Normalized toroidal flux coordinate at which the main deposition should occur</xs:documentation>
-					<xs:appinfo>
-						<units>1</units>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="steering_angle_pol" type="pulse_schedule_reference_ec">
 				<xs:annotation>
 					<xs:documentation>Steering angle of the EC beam in the R,Z plane (from the -R axis towards the -Z axis), angle_pol=atan2(-k_Z,-k_R), where k_Z and k_R are the Z and R components of the mean wave vector in the EC beam</xs:documentation>
@@ -783,6 +895,14 @@
 						<change_nbc_version>3.26.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>launching_angle_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polarization" type="pulse_schedule_ec_beam_polarization">
+				<xs:annotation>
+					<xs:documentation>Wave polarization</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -846,7 +966,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -876,7 +996,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -927,7 +1047,7 @@
 					<xs:documentation>Total NBI power (sum over the units)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -976,7 +1096,7 @@
 					<xs:documentation>Total IC power (sum over the antennas)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1025,7 +1145,7 @@
 					<xs:documentation>Total LH power (sum over the antennas)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1072,12 +1192,21 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="mirror" type="pulse_schedule_ec_mirror" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of Electron Cyclotron mirrors</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="power_launched" type="pulse_schedule_reference_ec">
 				<xs:annotation>
 					<xs:documentation>Total EC power launched in the plasma (sum over the beams)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 						<change_nbc_version>3.40.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>power</change_nbc_previous_name>
@@ -1181,7 +1310,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1232,7 +1361,7 @@
 					<xs:documentation>Line integrated electron density over a line of sight within the LCFS</xs:documentation>
 					<xs:appinfo>
 						<units>m^-2</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1241,7 +1370,7 @@
 					<xs:documentation>Integral of a 1D core profile over rho_tor_norm up to the LCFS</xs:documentation>
 					<xs:appinfo>
 						<units>m^-3</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1249,7 +1378,7 @@
 				<xs:annotation>
 					<xs:documentation>Description of the line of sight for calculating n_e, defined by two points when the beam is not reflected, a third point is added to define the reflected beam path</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1258,7 +1387,7 @@
 					<xs:documentation>Volume averaged electron density (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
 						<units>m^-3</units>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1274,7 +1403,7 @@
 				<xs:annotation>
 					<xs:documentation>Method for zeff calculation : Index = 1: average over a line of sight in the whole vacuum chamber, 2 : average over a line of sight within the LCFS, 3 : average of a 1D core profile over rho_tor_norm up to the LCFS</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1282,7 +1411,7 @@
 				<xs:annotation>
 					<xs:documentation>Description of the line of sight for calculating zeff, defined by two points when the beam is not reflected, a third point is added to define the reflected beam path</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1306,7 +1435,7 @@
 				<xs:annotation>
 					<xs:documentation>Quantities related to the different ion species, in the sense of isonuclear or isomolecular sequences</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1432,7 +1561,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1452,7 +1581,7 @@
 					<xs:documentation>Current fed into one turn of the coil. (Multiply by number of turns to obtain generated magnetic field). Positive when flowing from side 1 to side 2 of the coil, this numbering being made consistently with the convention that the current flows counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1479,7 +1608,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1488,7 +1617,7 @@
 			</xs:element>
 			<xs:element name="current" type="pulse_schedule_reference_pf_active">
 				<xs:annotation>
-					<xs:documentation>Current fed in the coil (for 1 turn, to be multiplied by the number of turns to obtain the generated magnetic field), positive when flowing from side 1 to side 2 of the coil (inside the coil), this numbering being made consistently with the convention that the current is counter-clockwise when seen from above.</xs:documentation>
+					<xs:documentation>Reference waveform of current to be fed into the coil (for 1 turn, to be multiplied by the number of turns to obtain the generated magnetic field).  Positive when the current flows counter-clockwise in the coil when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<change_nbc_version>3.37.1</change_nbc_version>
@@ -1638,7 +1767,7 @@
 					<xs:documentation>Inner triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1648,7 +1777,7 @@
 					<xs:documentation>Outer triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1658,7 +1787,7 @@
 					<xs:documentation>Minor triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1668,7 +1797,7 @@
 					<xs:documentation>Upper outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1677,7 +1806,7 @@
 					<xs:documentation>Upper inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1686,7 +1815,7 @@
 					<xs:documentation>Lower outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1695,7 +1824,7 @@
 					<xs:documentation>Lower inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1732,7 +1861,7 @@
 				<xs:annotation>
 					<xs:documentation>Height of the separatrix point of maximum major radius</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<units>m</units>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1741,7 +1870,7 @@
 				<xs:annotation>
 					<xs:documentation>Height of the separatrix point of minimum major radius</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<units>m</units>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1758,7 +1887,7 @@
 				<xs:annotation>
 					<xs:documentation>RZ position of the current centroid</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1797,7 +1926,7 @@
 		<xs:sequence>
 			<xs:element name="b_field_tor_vacuum_r" type="pulse_schedule_reference_no_aos">
 				<xs:annotation>
-					<xs:documentation>Vacuum field times major radius in the toroidal field magnet. Positive sign means anti-clockwise when viewed from above</xs:documentation>
+					<xs:documentation>Vacuum magnetic field times major radius within the cage of toroidal field coils. Positive sign means magnetic field is orientated counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>T.m</units>
 					</xs:appinfo>
@@ -1836,7 +1965,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.6.0</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.2.0</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
@@ -1885,7 +2014,7 @@
 					<xs:annotation>
 						<xs:documentation>Poloidal field coil references</xs:documentation>
 						<xs:appinfo>
-							<introduced_after_version>3.36.0</introduced_after_version>
+							<introduced_with_version>3.37.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>

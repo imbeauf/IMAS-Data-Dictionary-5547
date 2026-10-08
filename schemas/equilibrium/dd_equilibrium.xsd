@@ -6,7 +6,7 @@
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
 	<xs:complexType name="equilibrium_contour_tree_node">
 		<xs:annotation>
-			<xs:documentation>Node description</xs:documentation>
+			<xs:documentation>Node description for critical points and limiter points</xs:documentation>
 			<xs:appinfo>
 				<aos3Parent>yes</aos3Parent>
 			</xs:appinfo>
@@ -14,14 +14,21 @@
 		<xs:sequence>
 			<xs:element name="critical_type">
 				<xs:annotation>
-					<xs:documentation>0-minimum, 1-saddle, 2-maximum</xs:documentation>
-					<xs:appinfo>
+					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
+			</xs:element>
+			<xs:element name="node_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifies whether this node represents a confined plasma feature or a vacuum field feature. Only meaningful for O-point nodes (critical_type 0 or 2). Limiter points are always plasma features. X-points and saddle points do not require classification</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>equilibrium/equilibrium_contour_tree_node_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 			<xs:element name="r">
 				<xs:annotation>
@@ -49,26 +56,32 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal flux at the node</xs:documentation>
+					<xs:documentation>Value of the poloidal flux at the node location. Whether psi increases or decreases from the magnetic axis outward depends on the sign of the plasma current. All ordering rules in the contour tree (node ordering, levelset segment ordering) are defined in terms of normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), which always increases from 0 at the magnetic axis to 1 at the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.contour_tree.node{j}.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="levelset" type="rz1d_dynamic_aos">
+			<xs:element name="levelset" type="rz1d_dynamic_aos" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Single poloidal flux contour including critical point (x-point only)</xs:documentation>
+					<xs:documentation>Poloidal flux contour segments at the node's psi value that are topologically connected to the node. Each element of the array of structures stores one distinct contour segment. Only segments whose contour passes through the node are included; disconnected contours that share the same psi value but are spatially remote must be excluded. For O-points (flux extrema), no contour passes through the extremum and this field must contain a single entry with empty r and z arrays. For limiter points, the levelset contains the last closed flux surface (LCFS) that passes through the limiter point. For X-points, the segments are ordered as follows: segment 0 is the last closed flux surface (LCFS), the closed contour bounding the confined plasma that passes through the X-point. Segments 1..N are divertor or scrape-off layer leg contours, ordered by their departure angle from the X-point measured counterclockwise from the outboard midplane (theta=0 at R_max, Z of the X-point) in the standard (R, Z) poloidal plane. A standard single-null divertor (SND) X-point has 2 segments: the LCFS and the divertor legs. A double-null divertor (DND) has 2 segments per X-point; the primary X-point (lower psi_norm, closer to the magnetic axis) is stored at a lower node index than the secondary, so their levelsets are unambiguously associated. An exact snowflake, where two X-points merge into a single higher-order null with 6 separatrix branches, produces 3 segments: the LCFS and 2 distinct divertor channel contours.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="equilibrium_contour_tree">
 		<xs:annotation>
-			<xs:documentation>A structure to store the location, value, and connectivity of poloidal flux critical points</xs:documentation>
+			<xs:documentation>A structure to store the location, value, and connectivity of poloidal flux critical points and limiter points</xs:documentation>
 			<xs:appinfo>
 				<aos3Parent>yes</aos3Parent>
 			</xs:appinfo>
@@ -76,7 +89,7 @@
 		<xs:sequence>
 			<xs:element name="node" type="equilibrium_contour_tree_node" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Set of nodes. A contour tree node is defined by its critical type and position within the poloidal plane. A critical type of 1 references an x-point whilst a critical type of 0 or 2 references an o-point. Both X-points and O-points are rarely coincident with nodes defining the poloidal upon which the poloidal flux map is defined. The order in which the critical points are stored in the nodes array of structure is only important for the primary plasma O-point and X-points. If present, the primary plasma O-point should be placed as the first element of the nodes array of structure. If present, the primary plasma X-point should be the second element in the nodes structure</xs:documentation>
+					<xs:documentation>Set of critical points and limiter points of the poloidal flux. Each node is defined by its critical type (see critical_type), node type (see node_type), and position within the poloidal plane. All ordering rules below are defined in terms of normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), which is 0 at the magnetic axis and 1 at the plasma boundary. Nodes are partitioned into two groups: critical points (critical_type 0, 1, 2) occupy the leading indices, followed by limiter points (critical_type 3). Within each partition, nodes are ordered by ascending psi_norm; ties are broken by ascending R, then ascending Z. Node 0 must contain the primary O-point (magnetic axis), which has psi_norm = 0. Node 1 must contain the primary X-point, defined as the X-point with the lowest psi_norm value. For double-null divertor (DND) configurations, the secondary X-point has a higher psi_norm value and must be stored at a higher node index than the primary; the two psi_norm values are always distinct in practice. For limiter-bounded plasmas where no X-point defines the LCFS, node 1 should contain the X-point with the lowest psi_norm value (nearest to the plasma boundary), if any X-point exists. If no X-points exist, nodes are ordered by ascending psi_norm starting from node 1. For doublet or multi-region plasmas, each confined plasma region has its own O-point; additional O-points follow the same ascending psi_norm ordering. When limiter points are absent, only the critical point partition is present and the ordering is unchanged from earlier versions. The node_type identifier distinguishes O-points that represent confined plasma regions (node_type = plasma) from vacuum field extrema (node_type = vacuum).</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
@@ -84,7 +97,7 @@
 			</xs:element>
 			<xs:element name="edges">
 				<xs:annotation>
-					<xs:documentation>Edges connect nodes to one another. A single node may connect to multiple edges such as the case where a single maximum (a hill) may topologically link to multiple minima (the floors of different valleys). For each edge (1st dimension), the index of the two connected nodes are listed (index referring to the ../node array)</xs:documentation>
+					<xs:documentation>Edges encode the Reeb graph (contour tree) of the poloidal flux by connecting topologically adjacent nodes. For each edge (1st dimension), the indices of the two connected nodes are listed (indices referring to the ../node array). An edge (i, j) indicates that sweeping the contour level continuously between the psi values at nodes i and j encounters no other critical point or limiter point. Limiter point nodes participate in edges like any other node; they are inserted by splitting an existing edge at the limiter point's psi level, replacing one edge with two. The number of edges equals n_nodes minus the number of connected components of the graph. For simply-connected 2D domains the graph is a tree with n_edges = n_nodes - 1. For doublet or multi-island configurations the graph may be a forest of disconnected trees. Each edge pair must be stored with the lower node index first (edges[k, 0] &lt; edges[k, 1]).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
@@ -118,7 +131,7 @@
 					<xs:documentation>Description, e.g. mid-plane gap</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -228,7 +241,7 @@
 				<xs:annotation>
 					<xs:documentation>Expression for calculating the residual deviation between the left and right hand side of the Grad Shafranov equation</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.36.0</introduced_after_version>
+						<introduced_with_version>3.37.0</introduced_with_version>
 						<doc_identifier>equilibrium/equilibrium_gs_deviation_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
@@ -239,7 +252,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>mixed</units>
-						<introduced_after_version>3.36.0</introduced_after_version>
+						<introduced_with_version>3.37.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -251,7 +264,7 @@
 					<xs:documentation>Convergence result</xs:documentation>
 					<xs:appinfo>
 						<doc_identifier>equilibrium/equilibrium_convergence_status_identifier.xml</doc_identifier>
-						<introduced_after_version>3.40.0</introduced_after_version>
+						<introduced_with_version>3.40.1</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -295,7 +308,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m</units>
-						<introduced_after_version>3.32.1</introduced_after_version>
+						<introduced_with_version>3.33.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -339,10 +352,13 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal flux at which the boundary is taken</xs:documentation>
+					<xs:documentation>Value of the poloidal flux at which the boundary is taken. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.boundary.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -478,7 +494,7 @@
 				<xs:annotation>
 					<xs:documentation>Position and distance to the plasma boundary of the point of the first wall which is the closest to plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>../boundary_separatrix/closest_wall_point</change_nbc_previous_name>
@@ -489,7 +505,7 @@
 				<xs:annotation>
 					<xs:documentation>Outboard point on the separatrix on which dr/dz = 0 (local maximum of the major radius of the separatrix). In case of multiple local maxima, the closest one from z=z_magnetic_axis is chosen. </xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>../boundary_separatrix/dr_dz_zero_point</change_nbc_previous_name>
@@ -501,7 +517,7 @@
 					<xs:documentation>Set of gaps, defined by a reference point and a direction.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>aos_renamed</change_nbc_description>
 						<change_nbc_previous_name>../boundary_separatrix/gap</change_nbc_previous_name>
@@ -514,7 +530,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m</units>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 						<change_nbc_version>4.1.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
 						<change_nbc_previous_name>../global_quantities/rho_tor_boundary</change_nbc_previous_name>
@@ -526,11 +542,14 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal flux at the selected plasma boundary</xs:documentation>
+					<xs:documentation>Toroidal flux at the selected plasma boundary. Positive when the toroidal magnetic field is counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.boundary.phi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -539,11 +558,14 @@
 			</xs:element>
 			<xs:element name="phi_poloidal_current">
 				<xs:annotation>
-					<xs:documentation>Toroidal flux at the selected plasma boundary generated by the plasma poloidal current</xs:documentation>
+					<xs:documentation>Toroidal flux at the selected plasma boundary generated by the plasma poloidal current. Positive when the toroidal magnetic field is counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.boundary.phi_poloidal_current</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -626,7 +648,7 @@
 			</xs:element>
 			<xs:element name="b_field_phi">
 				<xs:annotation>
-					<xs:documentation>Total toroidal magnetic field at the magnetic axis</xs:documentation>
+					<xs:documentation>Total toroidal magnetic field at the magnetic axis. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>T</units>
@@ -651,7 +673,7 @@
 		<xs:sequence>
 			<xs:element name="value">
 				<xs:annotation>
-					<xs:documentation>Minimum q value</xs:documentation>
+					<xs:documentation>Minimum q value. Positive when toroidal current and toroidal magnetic field are in the same direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
@@ -682,7 +704,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -691,11 +713,14 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Minimum q position in poloidal flux</xs:documentation>
+					<xs:documentation>Minimum q position in poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.q_min.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -704,7 +729,7 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="equlibrium_global_quantities">
+	<xs:complexType name="equilibrium_global_quantities">
 		<xs:annotation>
 			<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 		</xs:annotation>
@@ -750,7 +775,7 @@
 			</xs:element>
 			<xs:element name="ip">
 				<xs:annotation>
-					<xs:documentation>Plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Plasma current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>A</units>
@@ -825,12 +850,15 @@
 			</xs:element>
 			<xs:element name="psi_axis">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux at the magnetic axis</xs:documentation>
+					<xs:documentation>Poloidal flux at the magnetic axis. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<lifecycle_status>obsolescent</lifecycle_status>
 						<lifecycle_version>4.1.0</lifecycle_version>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.psi_axis</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -839,13 +867,16 @@
 			</xs:element>
 			<xs:element name="psi_magnetic_axis">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux at the magnetic axis</xs:documentation>
+					<xs:documentation>Poloidal flux at the magnetic axis. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<change_nbc_version>4.1.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
 						<change_nbc_previous_name>psi_axis</change_nbc_previous_name>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.psi_magnetic_axis</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -854,12 +885,15 @@
 			</xs:element>
 			<xs:element name="psi_boundary">
 				<xs:annotation>
-					<xs:documentation>Poloidal flux at the selected plasma boundary </xs:documentation>
+					<xs:documentation>Poloidal flux at the selected plasma boundary. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
 						<lifecycle_status>obsolescent</lifecycle_status>
 						<lifecycle_version>4.1.0</lifecycle_version>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.psi_boundary</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -872,7 +906,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 						<lifecycle_status>obsolescent</lifecycle_status>
 						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
@@ -893,7 +927,7 @@
 			</xs:element>
 			<xs:element name="q_axis">
 				<xs:annotation>
-					<xs:documentation>q at the magnetic axis</xs:documentation>
+					<xs:documentation>q at the magnetic axis. Positive when toroidal current and toroidal magnetic field are in the same direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
@@ -940,10 +974,13 @@
 			</xs:element>
 			<xs:element name="psi_external_average">
 				<xs:annotation>
-					<xs:documentation>Average (over the plasma poloidal cross section) plasma poloidal magnetic flux produced by all external circuits (CS and PF coils, eddy currents, VS in-vessel coils), given by the following formula : int(psi_external.j_tor.dS) / Ip</xs:documentation>
+					<xs:documentation>Average (over the plasma poloidal cross section) plasma poloidal magnetic flux produced by all external circuits (CS and PF coils, eddy currents, VS in-vessel coils), given by the following formula : int(psi_external.j_tor.dS) / Ip. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.psi_external_average</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -960,7 +997,7 @@
 						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>core_profiles.global_quantities.v_loop</cocos_leaf_name_aos_indices>
 						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.v_external</cocos_leaf_name_aos_indices>
-						<introduced_after_version>3.37.2</introduced_after_version>
+						<introduced_with_version>3.38.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -985,7 +1022,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>ohm</units>
-						<introduced_after_version>3.37.2</introduced_after_version>
+						<introduced_with_version>3.38.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1056,7 +1093,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1168,7 +1205,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>as_parent</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1180,7 +1217,7 @@
 					<xs:documentation>Value calculated from the reconstructed equilibrium</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>1</units>
+						<units>as_parent</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1203,7 +1240,7 @@
 	</xs:complexType>
 	<xs:complexType name="equilibrium_constraints_0D_b0_like">
 		<xs:annotation>
-			<xs:documentation>Scalar constraint, b0_like cocos transform</xs:documentation>
+			<xs:documentation>Scalar constraint with toroidal-field-like sign convention</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="measured">
@@ -1273,7 +1310,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>as_parent</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1311,7 +1348,7 @@
 	</xs:complexType>
 	<xs:complexType name="equilibrium_constraints_0D_ip_like">
 		<xs:annotation>
-			<xs:documentation>Scalar constraint, ip_like cocos transform</xs:documentation>
+			<xs:documentation>Scalar constraint with plasma-current-like sign convention</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="measured">
@@ -1381,7 +1418,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>as_parent</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1419,7 +1456,7 @@
 	</xs:complexType>
 	<xs:complexType name="equilibrium_constraints_0D_one_like">
 		<xs:annotation>
-			<xs:documentation>Scalar constraint, one_like cocos transform</xs:documentation>
+			<xs:documentation>Scalar constraint with geometry-dependent sign convention</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="measured">
@@ -1489,7 +1526,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>as_parent</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1527,7 +1564,7 @@
 	</xs:complexType>
 	<xs:complexType name="equilibrium_constraints_0D">
 		<xs:annotation>
-			<xs:documentation>Scalar constraint, no cocos transform</xs:documentation>
+			<xs:documentation>Scalar constraint with no sign convention transformation</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="measured">
@@ -1594,7 +1631,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>as_parent</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1663,7 +1700,7 @@
 		<xs:sequence>
 			<xs:element name="b_field_tor_vacuum_r" type="equilibrium_constraints_0D">
 				<xs:annotation>
-					<xs:documentation>Vacuum field times major radius in the toroidal field magnet. Positive sign means anti-clockwise when viewed from above</xs:documentation>
+					<xs:documentation>Vacuum field times major radius in the toroidal field magnet. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T.m</units>
 					</xs:appinfo>
@@ -1727,7 +1764,7 @@
 			</xs:element>
 			<xs:element name="ip" type="equilibrium_constraints_0D_ip_like">
 				<xs:annotation>
-					<xs:documentation>Plasma current. Positive sign means anti-clockwise when viewed from above</xs:documentation>
+					<xs:documentation>Plasma current. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_alias>IDSPATH</cocos_alias>
@@ -1797,7 +1834,7 @@
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>Pa</units>
-						<introduced_after_version>3.38.1</introduced_after_version>
+						<introduced_with_version>3.39.0</introduced_with_version>
 						<url>https://doi.org/10.13182/FST48-968</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1829,7 +1866,7 @@
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>A.m^-2</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1855,7 +1892,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 						<uri>https://arxiv.org/abs/1009.2755</uri>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1868,7 +1905,7 @@
 					<xs:documentation>Number of degrees of freedom of the identification model</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1880,7 +1917,7 @@
 					<xs:documentation>Number of constraints used (i.e. having a non-zero weight)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1901,6 +1938,9 @@
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1914,7 +1954,7 @@
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>1</units>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1923,7 +1963,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal flux</xs:documentation>
+					<xs:documentation>Toroidal flux. Positive when the toroidal magnetic field is counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
@@ -1952,7 +1992,7 @@
 			</xs:element>
 			<xs:element name="f">
 				<xs:annotation>
-					<xs:documentation>Diamagnetic function (F=R B_Phi)</xs:documentation>
+					<xs:documentation>Diamagnetic function (F=R B_Phi). Positive when the toroidal field is counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
@@ -1968,11 +2008,14 @@
 			</xs:element>
 			<xs:element name="dpressure_dpsi">
 				<xs:annotation>
-					<xs:documentation>Derivative of pressure w.r.t. psi</xs:documentation>
+					<xs:documentation>Derivative of pressure w.r.t. psi. Sign depends on the poloidal flux sign convention</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>Pa.Wb^-1</units>
+						<cocos_label_transformation>dodpsi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dodpsi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.dpressure_dpsi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1981,11 +2024,14 @@
 			</xs:element>
 			<xs:element name="f_df_dpsi">
 				<xs:annotation>
-					<xs:documentation>Derivative of F w.r.t. Psi, multiplied with F</xs:documentation>
+					<xs:documentation>Derivative of F w.r.t. Psi, multiplied with F. Sign depends on the poloidal flux sign convention</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>T^2.m^2.Wb^-1</units>
+						<cocos_label_transformation>dodpsi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dodpsi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.f_df_dpsi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1994,7 +2040,7 @@
 			</xs:element>
 			<xs:element name="j_phi">
 				<xs:annotation>
-					<xs:documentation>Flux surface averaged toroidal current density = average(j_tor/R) / average(1/R)</xs:documentation>
+					<xs:documentation>Flux surface averaged toroidal current density = average(j_tor/R) / average(1/R). Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
@@ -2013,7 +2059,7 @@
 			</xs:element>
 			<xs:element name="j_parallel">
 				<xs:annotation>
-					<xs:documentation>Flux surface averaged approximation to parallel current density = average(j.B) / B0, where B0 = /vacuum_toroidal_field/b0</xs:documentation>
+					<xs:documentation>Flux surface averaged approximation to parallel current density = average(j.B) / B0, where B0 = /vacuum_toroidal_field/b0. Sign is positive when the scalar product j.B is in the same direction as B0 (the signed vacuum toroidal field at R0)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
@@ -2110,11 +2156,14 @@
 			</xs:element>
 			<xs:element name="dpsi_drho_tor">
 				<xs:annotation>
-					<xs:documentation>Derivative of Psi with respect to Rho_Tor</xs:documentation>
+					<xs:documentation>Derivative of Psi with respect to Rho_Tor. Sign follows the poloidal flux convention</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>Wb.m^-1</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.dpsi_drho_tor</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2148,7 +2197,7 @@
 						<coordinate1>../psi</coordinate1>
 						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2271,11 +2320,14 @@
 			</xs:element>
 			<xs:element name="dvolume_dpsi">
 				<xs:annotation>
-					<xs:documentation>Radial derivative of the volume enclosed in the flux surface with respect to Psi</xs:documentation>
+					<xs:documentation>Radial derivative of the volume enclosed in the flux surface with respect to Psi. Sign depends on the poloidal flux sign convention</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>m^3.Wb^-1</units>
+						<cocos_label_transformation>dodpsi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dodpsi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.dvolume_dpsi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2310,11 +2362,14 @@
 			</xs:element>
 			<xs:element name="darea_dpsi">
 				<xs:annotation>
-					<xs:documentation>Radial derivative of the cross-sectional area of the flux surface with respect to psi</xs:documentation>
+					<xs:documentation>Radial derivative of the cross-sectional area of the flux surface with respect to psi. Sign depends on the poloidal flux sign convention</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
 						<units>m^2.Wb^-1</units>
+						<cocos_label_transformation>dodpsi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dodpsi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.darea_dpsi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2554,7 +2609,7 @@
 					<xs:documentation>Type of profiles (distinguishes contribution from plasma, vaccum fields and total fields)</xs:documentation>
 					<xs:appinfo>
 						<doc_identifier>equilibrium/equilibrium_profiles_2d_identifier.xml</doc_identifier>
-						<introduced_after_version>3.37.2</introduced_after_version>
+						<introduced_with_version>3.38.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2611,6 +2666,9 @@
 						<coordinate1>../grid/dim1</coordinate1>
 						<coordinate2>../grid/dim2</coordinate2>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2636,7 +2694,7 @@
 			</xs:element>
 			<xs:element name="phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal flux</xs:documentation>
+					<xs:documentation>Toroidal flux. Positive when the toroidal magnetic field is counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../grid/dim1</coordinate1>
@@ -2653,7 +2711,7 @@
 			</xs:element>
 			<xs:element name="j_phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal plasma current density</xs:documentation>
+					<xs:documentation>Toroidal plasma current density. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../grid/dim1</coordinate1>
@@ -2704,7 +2762,7 @@
 			</xs:element>
 			<xs:element name="b_field_phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal component of the magnetic field</xs:documentation>
+					<xs:documentation>Toroidal component of the magnetic field. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../grid/dim1</coordinate1>
@@ -2763,19 +2821,25 @@
 			</xs:element>
 			<xs:element name="psi" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Values of the poloidal flux, given on various grid subsets</xs:documentation>
+					<xs:documentation>Values of the poloidal flux, given on various grid subsets. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.ggd{j}.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="phi" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Values of the toroidal flux, given on various grid subsets</xs:documentation>
+					<xs:documentation>Values of the toroidal flux, given on various grid subsets. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>Wb</units>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.ggd{j}.phi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2883,9 +2947,9 @@
 			</xs:element>
 			<xs:element name="contour_tree" type="equilibrium_contour_tree">
 				<xs:annotation>
-					<xs:documentation>Description of the topological connectivity of the poloidal flux map critical points as an undirected graph. Critical points are ether local extremum (o-points) or saddle points (x-points) of the poloidal flux map. X-points have zero gradients in orthogonal directions but are not local extremum of the poloidal flux map whilst O-points are.</xs:documentation>
+					<xs:documentation>Contour tree (Reeb graph) of the poloidal flux, encoding the topological structure of the equilibrium through its critical points and limiter points. Nodes represent critical points of the poloidal flux (O-points, X-points) and limiter points where the plasma boundary touches the first wall. Edges connect nodes that are topologically adjacent in psi_norm space, meaning no other node lies between them. The tree captures the nesting structure of flux surfaces, the connectivity between plasma regions, the separatrix topology, and the locations of limiter contacts. Normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), defines all ordering conventions.</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>4.0.0</lifecycle_version>
 					</xs:appinfo>
@@ -2900,7 +2964,7 @@
 					<xs:documentation>In case of equilibrium reconstruction under constraints, measurements used to constrain the equilibrium, reconstructed values and accuracy of the fit. The names of the child nodes correspond to the following definition: the solver aims at minimizing a cost function defined as : J=1/2*sum_i [ weight_i^2 (reconstructed_i - measured_i)^2 / sigma_i^2 ]. in which sigma_i is the standard deviation of the measurement error (to be found in the IDS of the measurement)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="global_quantities" type="equlibrium_global_quantities">
+			<xs:element name="global_quantities" type="equilibrium_global_quantities">
 				<xs:annotation>
 					<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 				</xs:annotation>

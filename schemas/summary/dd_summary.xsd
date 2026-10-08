@@ -508,7 +508,7 @@
 	</xs:complexType>
 	<xs:complexType name="summary_species_tor_angle">
 		<xs:annotation>
-			<xs:documentation>List of ion species used in summary with tor_angle cocos transform</xs:documentation>
+			<xs:documentation>List of ion species used in summary with toroidal-angle-like sign convention</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="hydrogen" type="summary_dynamic_flt_1d_root_parent_2">
@@ -545,7 +545,7 @@
 				<xs:annotation>
 					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.deuterium_tritium.value</cocos_leaf_name_aos_indices>
@@ -579,6 +579,17 @@
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.beryllium.value</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.boron.value</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -708,7 +719,7 @@
 				<xs:annotation>
 					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -731,7 +742,7 @@
 				<xs:annotation>
 					<xs:documentation>Boron (B)</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -827,6 +838,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -845,6 +864,14 @@
 			<xs:element name="beryllium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
@@ -974,6 +1001,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_constant_flt_0d_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -992,6 +1027,14 @@
 			<xs:element name="beryllium" type="summary_constant_flt_0d_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Boron</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_constant_flt_0d_2">
@@ -1121,6 +1164,14 @@
 					<xs:documentation>Tritium</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="helium_3" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Helium isotope with 3 nucleons</xs:documentation>
@@ -1139,6 +1190,14 @@
 			<xs:element name="beryllium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Beryllium</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="lithium" type="summary_dynamic_flt_1d_root_parent_2">
@@ -1294,11 +1353,14 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal magnetic flux</xs:documentation>
+					<xs:documentation>Poloidal magnetic flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../../time</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.position.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1366,11 +1428,14 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Poloidal magnetic flux</xs:documentation>
+					<xs:documentation>Poloidal magnetic flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../../time</coordinate1>
 						<units>Wb</units>
 						<type>dynamic</type>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.position.psi</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1439,7 +1504,7 @@
 			</xs:element>
 			<xs:element name="momentum_phi" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons</xs:documentation>
+					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>kg.m.s^-1</units>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
@@ -1483,7 +1548,7 @@
 			</xs:element>
 			<xs:element name="b_field_tor" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal magnetic field</xs:documentation>
+					<xs:documentation>Toroidal magnetic field. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -1499,7 +1564,7 @@
 			</xs:element>
 			<xs:element name="b_field_phi" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal magnetic field</xs:documentation>
+					<xs:documentation>Toroidal magnetic field. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -1508,13 +1573,13 @@
 						<change_nbc_version>4.1.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>b_field_tor</change_nbc_previous_name>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="e_field_parallel" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Average on the magnetic surface of (e_field.b_field) / B0, where B0 is global_quantities/b0/value</xs:documentation>
+					<xs:documentation>Average on the magnetic surface of (e_field.b_field) / B0, where B0 is global_quantities/b0/value. Sign is positive when the scalar product E.B is in the same direction as B0</xs:documentation>
 					<xs:appinfo>
 						<units>V.m^-1</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -1595,6 +1660,110 @@
 			<xs:element name="power_flux_peak" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
 					<xs:documentation>Peak power flux on the divertor target or limiter surface</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summary_local_quantities_divertor">
+		<xs:annotation>
+			<xs:documentation>Set of local quantities without radial position, for localizations outside the LCFS, with a name and specialized for divertor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="summary_static_str_0d">
+				<xs:annotation>
+					<xs:documentation>Name of the divertor plate. Standard names are : LI (resp. LO) for lower inner (resp. outer) plates;  UI (resp. UO) for upper inner (resp. outer) plates. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Electron temperature at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Maximum electron temperature on the target</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e_n_e_weighted_average" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Density weighted average of the electron temperature over the target, i.e. integral(t_e * n_e*dA)/integral(n_e*dA) where the integrals are done over the target area</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i_average" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Ion temperature (average over ion species) at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Electron density at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Maximum electron density on the target</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i" type="summary_species">
+				<xs:annotation>
+					<xs:documentation>Ion density per species at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_total" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Total ion density (sum over species) at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Effective charge at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_expansion" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Magnetic flux expansion as defined by Stangeby : ratio between the poloidal field at the midplane separatrix and the poloidal field at the strike-point see formula attached, where u means upstream (midplane separatrix) and t means at divertor target (downstream).</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<url>divertors/flux_expansion.png</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_flux_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Peak power flux on the divertor target surface</xs:documentation>
 					<xs:appinfo>
 						<units>W.m^-2</units>
 					</xs:appinfo>
@@ -1693,7 +1862,7 @@
 			</xs:element>
 			<xs:element name="momentum_phi" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons</xs:documentation>
+					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>kg.m.s^-1</units>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
@@ -1718,7 +1887,7 @@
 			</xs:element>
 			<xs:element name="q" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Safety factor</xs:documentation>
+					<xs:documentation>Safety factor. Positive when toroidal current and toroidal magnetic field are in the same direction</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
@@ -1737,7 +1906,7 @@
 			</xs:element>
 			<xs:element name="e_field_parallel" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Average on the magnetic surface of (e_field.b_field) / B0, where B0 is global_quantities/b0/value</xs:documentation>
+					<xs:documentation>Average on the magnetic surface of (e_field.b_field) / B0, where B0 is global_quantities/b0/value. Sign is positive when the scalar product E.B is in the same direction as B0</xs:documentation>
 					<xs:appinfo>
 						<units>V.m^-1</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -2153,7 +2322,7 @@
 			</xs:element>
 			<xs:element name="b_field_tor_pedestal_top_hfs" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the high field side</xs:documentation>
+					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the high field side. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -2164,7 +2333,7 @@
 			</xs:element>
 			<xs:element name="b_field_tor_pedestal_top_lfs" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the low field side</xs:documentation>
+					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the low field side. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -2363,7 +2532,7 @@
 			</xs:element>
 			<xs:element name="b_field_tor_pedestal_top_hfs" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the high field side</xs:documentation>
+					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the high field side. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -2374,7 +2543,7 @@
 			</xs:element>
 			<xs:element name="b_field_tor_pedestal_top_lfs" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the low field side</xs:documentation>
+					<xs:documentation>Toroidal field calculated at the position of the pressure pedestal top (as determined by the fit) on the low field side. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -2466,7 +2635,7 @@
 						<catalogue_name>suffix</catalogue_name>
 						<cocos_alias>IDSPATH</cocos_alias>
 						<cocos_replace>summary.local.separatrix_average</cocos_replace>
-						<introduced_after_version>3.36.0</introduced_after_version>
+						<introduced_with_version>3.37.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2495,13 +2664,13 @@
 					<xs:documentation>Parameters at the limiter tangency point</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="divertor_target" type="summary_local_quantities_no_position_name" maxOccurs="4">
+			<xs:element name="divertor_target" type="summary_local_quantities_divertor" maxOccurs="4">
 				<xs:annotation>
 					<xs:documentation>Parameters at a divertor target</xs:documentation>
 					<xs:appinfo>
 						<catalogue_name>suffix</catalogue_name>
 						<coordinate1>1...N</coordinate1>
-						<introduced_after_version>3.34.0</introduced_after_version>
+						<introduced_with_version>3.35.0</introduced_with_version>
 						<change_nbc_version>3.35.0</change_nbc_version>
 						<change_nbc_description>aos_renamed</change_nbc_description>
 						<change_nbc_previous_name>divertor_plate</change_nbc_previous_name>
@@ -2871,7 +3040,7 @@
 		<xs:sequence>
 			<xs:element name="ip" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Total plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Total plasma current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -2882,7 +3051,7 @@
 			</xs:element>
 			<xs:element name="current_non_inductive" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Total non-inductive current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Total non-inductive current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -2893,7 +3062,7 @@
 			</xs:element>
 			<xs:element name="current_bootstrap" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Bootstrap current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Bootstrap current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -2904,7 +3073,7 @@
 			</xs:element>
 			<xs:element name="current_ohm" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Ohmic current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Ohmic current (toroidal component). Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -2923,7 +3092,7 @@
 			</xs:element>
 			<xs:element name="v_loop" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>LCFS loop voltage (positive value drives positive ohmic current that flows anti-clockwise when viewed from above)</xs:documentation>
+					<xs:documentation>LCFS loop voltage (positive value drives positive ohmic current that flows counter-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
 						<units>V</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -3121,7 +3290,7 @@
 			</xs:element>
 			<xs:element name="b0" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Vacuum toroidal field at R0. Positive sign means anti-clockwise when viewed from above. The product R0B0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
+					<xs:documentation>Vacuum toroidal field at R0. Positive sign means counter-clockwise when viewed from above. The product R0B0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
 					<xs:appinfo>
 						<units>T</units>
 						<cocos_label_transformation>b0_like</cocos_label_transformation>
@@ -3295,10 +3464,13 @@
 			</xs:element>
 			<xs:element name="psi_external_average" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Average (over the plasma poloidal cross section) plasma poloidal magnetic flux produced by all toroidal loops (active coils and passive loops) but the plasma, given by the following formula : int(psi_loops.j_tor.dS) / Ip</xs:documentation>
+					<xs:documentation>Average (over the plasma poloidal cross section) plasma poloidal magnetic flux produced by all toroidal loops (active coils and passive loops) but the plasma, given by the following formula : int(psi_loops.j_tor.dS) / Ip. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<units>Wb</units>
-						<introduced_after_version>3.36.0</introduced_after_version>
+						<introduced_with_version>3.37.0</introduced_with_version>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>summary.global_quantities.psi_external_average</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3408,13 +3580,13 @@
 					<xs:documentation>Total instantaneous fusion power (from all reactions and carried by all fusion products, i.e. fast ions and neutrons)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
-						<introduced_after_version>4.1.1</introduced_after_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="current" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Parallel current driven by this fusion reactions</xs:documentation>
+					<xs:documentation>Parallel current driven by this fusion reactions. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -3430,7 +3602,7 @@
 						<change_nbc_version>3.34.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>neutron_fluxes</change_nbc_previous_name>
-						<introduced_after_version>3.33.0</introduced_after_version>
+						<introduced_with_version>3.34.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3485,7 +3657,7 @@
 					<xs:documentation>Maximum toroidal current carried by runaway electrons during the pulse</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3519,7 +3691,7 @@
 			</xs:element>
 			<xs:element name="current" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Parallel current driven by this NBI unit</xs:documentation>
+					<xs:documentation>Parallel current driven by this NBI unit. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -3551,7 +3723,7 @@
 			</xs:element>
 			<xs:element name="direction" type="summary_static_int_0d">
 				<xs:annotation>
-					<xs:documentation>Direction of the beam seen from above the torus: -1 = clockwise; 1 = counter clockwise</xs:documentation>
+					<xs:documentation>Direction of the beam seen from above the torus: -1 = clockwise; 1 = counter-clockwise</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="energy" type="summary_dynamic_flt_1d_root">
@@ -3618,7 +3790,7 @@
 			</xs:element>
 			<xs:element name="phi" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Toroidal angle of ECRH at resonance</xs:documentation>
+					<xs:documentation>Toroidal angle of ECRH at resonance. Increases counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>rad</units>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
@@ -3656,7 +3828,7 @@
 			</xs:element>
 			<xs:element name="current" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Parallel current driven by EC waves</xs:documentation>
+					<xs:documentation>Parallel current driven by EC waves. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -3722,7 +3894,7 @@
 			</xs:element>
 			<xs:element name="current" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Parallel current driven by LH waves</xs:documentation>
+					<xs:documentation>Parallel current driven by LH waves. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -3819,7 +3991,7 @@
 			</xs:element>
 			<xs:element name="current" type="summary_dynamic_flt_1d_root">
 				<xs:annotation>
-					<xs:documentation>Parallel current driven by IC waves</xs:documentation>
+					<xs:documentation>Parallel current driven by IC waves. Positive sign means counter-clockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -4078,7 +4250,7 @@
 					<xs:documentation>Pre-disruption time = disruption.time - t_pre, where t_pre[s] is approximately given by 0.0025 * R0[m]^2 and R0 is the major radius where the toroidal field is defined (../../global_quantities/r0)</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4115,7 +4287,7 @@
 				<xs:annotation>
 					<xs:documentation>Characteristic decay times describing the loss of different quantities during the disruption</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>3.39.0</introduced_after_version>
+						<introduced_with_version>3.40.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4123,7 +4295,7 @@
 				<xs:annotation>
 					<xs:documentation>Characteristics of halo current</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4131,7 +4303,7 @@
 				<xs:annotation>
 					<xs:documentation>Type of the disruption</xs:documentation>
 					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 						<doc_identifier>summary/disruption_type_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4273,7 +4445,7 @@
 						<xs:documentation>Type of data contained in the dataset</xs:documentation>
 						<xs:appinfo>
 							<doc_identifier>utilities/data_type_identifier.xml</doc_identifier>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4282,7 +4454,7 @@
 						<xs:documentation>Name of the experimental device to which this data is related (if relevant)</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -4294,7 +4466,7 @@
 						<xs:documentation>Pulse number to which this data is related (if relevant)</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -4306,7 +4478,7 @@
 						<xs:documentation>Date and time (UTC) at which the pulse started on the experiment (if relevant), expressed in a human readable form (ISO 8601) : the format of the string shall be : YYYY-MM-DDTHH:MM:SSZ. Example : 2020-07-24T14:19:00Z</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -4317,7 +4489,7 @@
 					<xs:annotation>
 						<xs:documentation>Time at which the pulse started on the experiment (if relevant), expressed in Unix Epoch time represented as two integers: seconds, plus additionally elapsed nanoseconds</xs:documentation>
 						<xs:appinfo>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4325,7 +4497,7 @@
 					<xs:annotation>
 						<xs:documentation>Time at which the pulse ended on the experiment (if relevant), expressed in Unix Epoch time represented as two integers: seconds, plus additionally elapsed nanoseconds</xs:documentation>
 						<xs:appinfo>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4334,7 +4506,7 @@
 						<xs:documentation>For experimental processed data, date and time (UTC) at which the pulse data processing started on the experiment (if relevant), expressed in a human readable form (ISO 8601) : the format of the string shall be : YYYY-MM-DDTHH:MM:SSZ. Example : 2020-07-24T14:19:00Z</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -4346,7 +4518,7 @@
 						<xs:documentation>Description of the simulation or the pulse</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -4357,7 +4529,7 @@
 					<xs:annotation>
 						<xs:documentation>Description of the general characteristics of the simulation, if this dataset has been produced by a simulation</xs:documentation>
 						<xs:appinfo>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4386,7 +4558,7 @@
 						<xs:documentation>Choice of midplane definition (use the lowest index number if more than one value is relevant) </xs:documentation>
 						<xs:appinfo>
 							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
-							<introduced_after_version>3.32.1</introduced_after_version>
+							<introduced_with_version>3.33.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4394,7 +4566,7 @@
 					<xs:annotation>
 						<xs:documentation>Ratios of the volume-averaged density (inside LCFS) of each ion species to the volume-averaged electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 						<xs:appinfo>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
@@ -4460,7 +4632,7 @@
 						<xs:documentation>Accumulated injected gas since the plasma breakdown in equivalent electrons</xs:documentation>
 						<xs:appinfo>
 							<units>1</units>
-							<introduced_after_version>3.36.0</introduced_after_version>
+							<introduced_with_version>3.37.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4469,7 +4641,7 @@
 						<xs:documentation>Accumulated injected gas during the prefill in equivalent electrons</xs:documentation>
 						<xs:appinfo>
 							<units>1</units>
-							<introduced_after_version>3.37.2</introduced_after_version>
+							<introduced_with_version>3.38.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4518,7 +4690,7 @@
 						<xs:documentation>Time of the plasma breakdown</xs:documentation>
 						<xs:appinfo>
 							<units>s</units>
-							<introduced_after_version>3.36.0</introduced_after_version>
+							<introduced_with_version>3.37.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4527,7 +4699,7 @@
 						<xs:documentation>Duration of existence of a confined plasma during the pulse </xs:documentation>
 						<xs:appinfo>
 							<units>s</units>
-							<introduced_after_version>3.36.0</introduced_after_version>
+							<introduced_with_version>3.37.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>

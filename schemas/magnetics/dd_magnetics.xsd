@@ -25,7 +25,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -116,7 +116,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -133,10 +133,11 @@
 			</xs:element>
 			<xs:element name="position" type="rphiz0d_static" maxOccurs="10">
 				<xs:annotation>
-					<xs:documentation>List of (R,Z,phi) points defining the position of the loop (see data structure documentation FLUXLOOPposition.pdf). Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
+					<xs:documentation>List of (R,phi,Z) points defining the outline of the flux loop. Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
+						<url>magnetics/flux_loop_position.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -248,7 +249,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -405,7 +406,7 @@
 			</xs:element>
 			<xs:element name="ip" type="signal_flt_1d">
 				<xs:annotation>
-					<xs:documentation>Plasma current. Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:documentation>Plasma current. Positive sign means counter-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -478,7 +479,7 @@
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
+						<introduced_with_version>4.0.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -572,6 +573,9 @@
 							<coordinate1>1...N</coordinate1>
 							<cocos_alias>bpol</cocos_alias>
 							<cocos_replace>b_field_pol</cocos_replace>
+							<change_nbc_version>3.24.0</change_nbc_version>
+							<change_nbc_description>aos_renamed</change_nbc_description>
+							<change_nbc_previous_name>bpol_probe</change_nbc_previous_name>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -580,7 +584,7 @@
 						<xs:documentation>Indices of equivalent poloidal field probes (from the b_field_pol_probe array) that differ only by their toroidal position and have the same (R,Z) position and the same coil orientation (poloidal and toroidal angles). Sets of equivalent probes (i.e. sets of (R, Z, poloidal_angle and toroidal_angle) values) are grouped by the first coordinate and the coils belonging to a given set are listed along the second coordinate. As an example, if there are N probes in a poloidal cross section that are replicated at the same poloidal positions and with the same orientation at 8 toroidal positions, the matrix will be of size Nx8.</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
+							<introduced_with_version>4.1.0</introduced_with_version>
 							<coordinate1>1...N</coordinate1>
 							<coordinate2>1...N</coordinate2>
 						</xs:appinfo>
@@ -615,13 +619,13 @@
 						<xs:documentation>Set of shunt resistances through which currents in the divertor structure are measured. Shunts are modelled as piecewise straight line segments in the poloidal plane.</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
-							<introduced_after_version>3.32.1</introduced_after_version>
+							<introduced_with_version>3.33.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="ip" type="magnetics_method_distinct" maxOccurs="5">
 					<xs:annotation>
-						<xs:documentation>Plasma current. Positive sign means anti-clockwise when viewed from above. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method).</xs:documentation>
+						<xs:documentation>Plasma current. Positive sign means counter-clockwise when viewed from above. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method).</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<units>A</units>
@@ -633,7 +637,7 @@
 				</xs:element>
 				<xs:element name="diamagnetic_flux" type="magnetics_method_distinct" maxOccurs="5">
 					<xs:annotation>
-						<xs:documentation>Diamagnetic flux. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method).</xs:documentation>
+						<xs:documentation>Diamagnetic flux. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method). Positive sign means counter-clockwise when viewed from above</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<units>Wb</units>
@@ -649,7 +653,7 @@
 						<xs:appinfo>
 							<type>static</type>
 							<units>s</units>
-							<introduced_after_version>3.32.1</introduced_after_version>
+							<introduced_with_version>3.33.0</introduced_with_version>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
